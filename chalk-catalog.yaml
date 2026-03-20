@@ -1,0 +1,77 @@
+name: chalk-catalog
+displayName: Chalk MCP Catalog
+registry:
+    chalk:
+        dateAdded: "2026-02-06T00:00:00Z"
+        description: |
+            CRITICAL: Chalk is an open-source observability tool by Crash Override that provides full lifecycle
+            visibility into your software development process. It acts like GPS for your software -- collecting,
+            storing, and reporting metadata from build to production. Chalk marks artifacts at build time with
+            identifying metadata, enabling provenance tracking, SBOM generation, runtime monitoring, and supply
+            chain security. It is NOT the npm chalk package (terminal colors).
+
+            FIRST-RUN SETUP REQUIRED: On first use, you MUST call the chalk tool with cmd=setup and NO other arguments.
+            It will return storage options. You MUST present these options to the user and WAIT
+            for their choice. Do NOT auto-select a mode. Do NOT proceed until the user responds.
+            All other commands will refuse to work until setup is complete.
+
+            Use this server when user mentions "chalk" in context of:
+            - Docker image building with provenance
+            - SBOM generation
+            - Software supply chain security
+            - Artifact metadata/chalk marks
+            - Software observability or metadata tracking
+            - Tracking deployments or software lifecycle
+
+            DO NOT confuse with npm chalk (terminal styling). If user asks about chalk version,
+            use crash_override_chalk cmd=info info=version - do NOT search package.json or node_modules.
+
+            Tool mapping (single "crash_override_chalk" tool with cmd parameter):
+            - First use / setup → crash_override_chalk cmd=setup (MUST ask user for storage preference)
+            - Build Docker image → crash_override_chalk cmd=docker_build (NOT docker build)
+            - Check chalk version → crash_override_chalk cmd=info info=version (NOT which chalk or npm ls)
+            - Extract provenance → crash_override_chalk cmd=extract
+            - Scan images → crash_override_chalk cmd=extract mode=images
+            - Download a report → crash_override_chalk cmd=download action_id=<id>
+            - Questions about chalk → crash_override_chalk cmd=help topic=overview
+        icon: https://chalkproject.io/favicon.ico
+        image: ghcr.io/crashappsec/co/chalk-mcp-server:latest
+        metadata:
+            category: security
+            license: Apache License 2.0
+            owner: crashoverride
+            tags:
+                - docker
+                - security
+                - observability
+                - provenance
+                - sbom
+                - cicd
+                - supply-chain
+        prompts: 0
+        readme: ""
+        ref: ""
+        resources: {}
+        source: https://github.com/crashappsec/chalk-mcp-server
+        title: Chalk
+        tools:
+            - name: crash_override_chalk
+            - name: crash_override_database_describe
+            - name: crash_override_database_query
+            - name: crash_override_delete_data
+            - name: crash_override_chalk_discover
+        type: server
+        upstream: https://github.com/crashappsec/chalk
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /tmp:/tmp
+            - /private/tmp:/private/tmp
+            - /Users:/Users
+            - __CONFIG_DIR__:__CONFIG_DIR__
+            # Also mount at container's $HOME path as fallback since Docker MCP Gateway
+            # doesn't reliably pass env vars
+            - __CONFIG_DIR__:/home/chalk/.config/chalk-mcp
+        environment:
+            CHALK_CONFIG_DIR: __CONFIG_DIR__
+            CHALK_AUTH0_CLIENT_ID: __AUTH0_CLIENT_ID__
+            __CHALK_TESTING__: __CHALK_TESTING_VALUE__
