@@ -419,32 +419,6 @@ print_next_steps() {
 └────────────────────────────────────────────────────────────────┘
 EOF
 
-  # Cursor-specific guidance
-  local has_cursor=false
-  for c in "${SELECTED_CLIENTS[@]}"; do
-    [[ "$c" == "cursor" ]] && has_cursor=true && break
-  done
-  if $has_cursor; then
-    cat << 'EOF'
-
-┌────────────────────────────────────────────────────────────────┐
-│                     Cursor Tips                                │
-├────────────────────────────────────────────────────────────────┤
-│                                                                │
-│  Chalk tools are MCP tool calls — do NOT docker pull/run       │
-│  the chalk image. The Docker MCP Gateway manages the           │
-│  container automatically.                                      │
-│                                                                │
-│  All file paths must be absolute (e.g. /Users/me/project).     │
-│  Relative paths fail inside the container.                     │
-│                                                                │
-│  For best results, copy .cursorrules from the chalk-mcp repo   │
-│  into your project root. This teaches Cursor's agent to use    │
-│  MCP tool calls instead of pulling the Docker image directly.  │
-│                                                                │
-└────────────────────────────────────────────────────────────────┘
-EOF
-  fi
 }
 
 # ============================================================================

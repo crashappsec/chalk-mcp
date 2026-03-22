@@ -16,6 +16,10 @@ signed, traced, and reported.
 | A repository hosted on GitHub, GitLab, or similar                     |             |                                                                          |
 | A container registry or deployment target (e.g. ECR, GCR, AWS Lambda) |             |                                                                          |
 
+For GitHub repositories you will also need:
+
+- Org or repo admin access (to install the GitHub App)
+
 ## 1. Clone your repository
 
 Clone a repository that builds and pushes a container image to a registry
@@ -35,11 +39,19 @@ Open your AI coding agent in the repository and ask it:
 The agent will guide you through the necessary steps depending on your
 CI/CD provider (GitHub Actions, GitLab CI, etc.).
 
-## GitHub Actions
+### GitHub Actions
 
-For GitHub-based repositories, the agent will add the
-[`setup-chalk-action`](https://github.com/crashappsec/setup-chalk-action)
-to your workflow:
+For GitHub-based repositories, the agent will:
+
+1. **Generate an install link** for the
+   [Crash Override GitHub App](https://github.com/apps/crash-override)
+   on your organization. Follow the link to authorize it and select the
+   repositories you want to instrument.
+
+2. **Add the [`setup-chalk-action`](https://github.com/crashappsec/setup-chalk-action)**
+   step to your workflow. The app configures the action ref, OIDC
+   authentication, and Chalk profile automatically — no manual YAML
+   editing is required beyond what the agent proposes, which should be similar to the snippet below:
 
 ```yaml
 - name: Setup Chalk
@@ -48,13 +60,9 @@ to your workflow:
     connect: true
 ```
 
-This step installs Chalk into the runner and connects it to the
+This installs Chalk into the runner and connects it to the
 Crash Override platform so that build reports, provenance, and
-deployment telemetry are automatically captured for every CI build.
-
-The agent will also generate a link to install the
-[Crash Override GitHub App](https://github.com/apps/crash-override) on
-your organization. Follow the link to authorize it.
+deployment telemetry are captured for every CI build.
 
 ## 3. Trigger a build
 
@@ -67,15 +75,18 @@ git push
 ```
 
 Once the pipeline runs you should see Chalk output in your build logs
-confirming it is active.
+confirming it is active. Chalk wraps your Docker images with provenance
+marks and records build data automatically.
+
+> [!TIP]
+> You can trigger a debug build to see detailed Chalk execution logs.
 
 ## 4. Query your build data
 
 A couple of minutes after the build completes, your build data will be
 available through the MCP interface. Ask your AI agent:
 
-> **"Show me the latest Chalk build reports"**
+> **"Using the Chalk MCP server, tell me about my builds"**
 
-> [!TIP]
-> You can trigger a debug build to see detailed Chalk execution logs.
-> Ask your AI agent: **"Trigger a debug build with Chalk"**
+The agent will query and summarize your build history — repos, authors,
+timestamps, success rates, and artifact provenance.
