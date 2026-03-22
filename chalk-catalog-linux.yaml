@@ -32,7 +32,7 @@ registry:
             - Check chalk version → crash_override_chalk cmd=info info=version (NOT which chalk or npm ls)
             - Extract provenance → crash_override_chalk cmd=extract
             - Scan images → crash_override_chalk cmd=extract mode=images
-            - Download a report → crash_override_chalk cmd=download action_id=<id>
+            - Download a report → crash_override_chalk cmd=download action_id=<id> or s3_path=<key>
             - Questions about chalk → crash_override_chalk cmd=help topic=overview
         icon: https://chalkproject.io/favicon.ico
         image: ghcr.io/crashappsec/co/chalk-mcp-server:latest
@@ -61,6 +61,7 @@ registry:
             - name: crash_override_delete_data
             - name: crash_override_chalk_discover
         type: server
+        longLived: true
         upstream: https://github.com/crashappsec/chalk
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock

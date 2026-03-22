@@ -8,6 +8,7 @@ SERVER_NAME="chalk"
 FORCE=false
 LOCAL=false
 TESTING=false
+REPORT_BUG=false
 CHALK_IMAGE="ghcr.io/crashappsec/co/chalk-mcp-server"
 CONFIG_DIR="$HOME/.config/chalk-mcp"
 TOTAL_STEPS=4
@@ -27,6 +28,10 @@ while [[ $# -gt 0 ]]; do
       TESTING=true
       shift
       ;;
+    --report-bug)
+      REPORT_BUG=true
+      shift
+      ;;
     -h|--help)
       echo "Usage: $0 [OPTIONS]"
       echo ""
@@ -34,6 +39,7 @@ while [[ $# -gt 0 ]]; do
       echo "  -y, --yes, --force  Skip confirmation prompts, wipe existing data"
       echo "  --local             Rebuild and use the local image"
       echo "  --testing           Point chalk at the test environment (internal only)"
+      echo "  --report-bug        Collect diagnostics and generate a bug report"
       echo "  -h, --help          Show this help"
       exit 0
       ;;
@@ -65,6 +71,12 @@ fi
 # ============================================================================
 # Main Script
 # ============================================================================
+
+# Handle --report-bug before main flow
+if $REPORT_BUG; then
+  run_bug_report
+  exit 0
+fi
 
 print_header
 
@@ -231,7 +243,11 @@ if [[ "$OS" == "Linux" ]]; then
   sed -i "s|__CONFIG_DIR__|$CHALK_CONFIG_DIR|g" "$CATALOG_FILE"
   sed -i "s|__CHALK_TESTING_VALUE__|$CHALK_TESTING|g" "$CATALOG_FILE"
 else
-  AUTH0_CLIENT_ID="${CHALK_AUTH0_CLIENT_ID:-}"
+  if [[ -z "${CHALK_AUTH0_CLIENT_ID:-}" ]]; then
+    err "CHALK_AUTH0_CLIENT_ID is required"
+    exit 1
+  fi
+  AUTH0_CLIENT_ID="$CHALK_AUTH0_CLIENT_ID"
   sed -e "s|__CONFIG_DIR__|$CHALK_CONFIG_DIR|g" \
       -e "s|__AUTH0_CLIENT_ID__|$AUTH0_CLIENT_ID|g" \
       -e "s|__CHALK_TESTING_VALUE__|$CHALK_TESTING|g" \
