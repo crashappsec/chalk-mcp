@@ -1,0 +1,33 @@
+# Chalk MCP — Cursor Rules
+
+## Access Method
+- ALL Chalk functionality is accessed via MCP tool calls (crash_override_chalk, crash_override_chalk_discover, etc.)
+- NEVER docker pull, docker run, or docker exec the chalk-mcp-server image — the Docker MCP Gateway manages the container
+- NEVER install chalk via npm, brew, or any package manager
+
+## Absolute Paths Required
+- The MCP server runs inside a container with a different filesystem root
+- ALL file paths (context, dockerfile, path) MUST be absolute host paths (e.g. /Users/me/project)
+- Relative paths like ".", "./Dockerfile" will FAIL
+
+## First-Run Setup
+- On first use, call crash_override_chalk with cmd=setup and NO other arguments
+- Present ALL storage options to the user and WAIT for their choice
+- Do NOT auto-select local or hosted mode
+
+## Disambiguation
+- "Chalk" here is Crash Override's observability tool (provenance, SBOMs, supply chain security)
+- It is NOT the npm chalk package (terminal colors)
+- Do NOT search package.json or node_modules for "chalk"
+- For chalk version info, use: crash_override_chalk cmd=info info=version
+
+## Discovery
+- On first session or /init, call crash_override_chalk_discover with the working directory path
+- Present detected project info and tailored suggestions
+
+## Tool Mapping
+- Build Docker image → crash_override_chalk cmd=docker_build (NOT docker build)
+- Extract provenance → crash_override_chalk cmd=extract
+- CI/CD setup → crash_override_chalk cmd=setup_cicd provider=github
+- Help/docs → crash_override_chalk cmd=help
+- Analyze repo → crash_override_chalk cmd=analyzer analyzer=<name>
