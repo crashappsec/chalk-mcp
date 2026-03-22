@@ -1,7 +1,7 @@
 # Chalk MCP Server
 
-> **Alpha Preview** — This server is experimental and provided as-is.
-> It aims to make onboarding easier for new users.
+> **Alpha Preview** — This server is experimental and provided as an early preview of the officially supported release.
+> It aims to make onboarding easier for new Chalk users.
 > For full authoritative Chalk documentation visit [chalkproject.io](https://chalkproject.io/).
 
 Add software supply-chain traceability to your AI coding agent.
