@@ -48,6 +48,8 @@ For GitHub-based repositories, the agent will:
    on your organization. Follow the link to authorize it and select the
    repositories you want to instrument.
 
+Once the GitHub App is installed it should be visible under your org's `/settings/installations`:
+
 2. **Add the [`setup-chalk-action`](https://github.com/crashappsec/setup-chalk-action)**
    step to your workflow. The app configures the action ref, OIDC
    authentication, and Chalk profile automatically — no manual YAML
