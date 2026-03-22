@@ -16,7 +16,7 @@ Build and sign a container image with full provenance using Chalk MCP.
 ## 1. Install the Chalk MCP server
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/crashappsec/chalk-mcp/main/setup.sh | bash -s -- --force
+curl -fsSL https://raw.githubusercontent.com/crashappsec/chalk-mcp/main/setup.sh | bash
 ```
 
 The installer pulls the server image, registers it with Docker MCP Toolkit,
@@ -45,5 +45,5 @@ Ask your AI agent:
 
 ## 5. Explore further
 
-You can query on any chalk report field, inspect reports, etc.
+You can query on any Chalk report field, inspect reports, etc.
 In hosted mode you can ask which services a build was deployed to, in which regions, and more.

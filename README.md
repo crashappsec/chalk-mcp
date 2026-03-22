@@ -1,15 +1,25 @@
 > [!WARNING]
-> **Alpha Preview** — This server is experimental and provided as an early preview of the officially supported release.
+> **Alpha Preview** — This server is experimental and provided as an early preview of the upcoming, officially supported release.
 > It aims to make onboarding easier for new Chalk users.
-> For full authoritative Chalk documentation visit [chalkproject.io](https://chalkproject.io/).
+> For a thorough, authoritative Chalk documentation visit [chalkproject.io](https://chalkproject.io/).
 
 # Chalk MCP Server
 
-Add software supply-chain traceability to your AI coding agent.
-Chalk MCP lets your agent build, sign, and inspect container images
-with full provenance — no manual tooling required.
+[Chalk](https://github.com/crashappsec/chalk) Adds software supply-chain traceability to your AI coding agent.
+The Chalk MCP server lets your agent build, sign, and inspect container images
+with full provenance — no manual tooling required. It is using the [Docker MCP Toolkit](https://docs.docker.com/ai/mcp-catalog-and-toolkit/toolkit/)
+to allow you to spin up an MCP server in a dedicated docker container on your local dev machine, experiment with Chalk,
+and make it available to any client of your choice (e.g., Claude Code, Codex) you have connected to Docker.
 
-## Quick install
+To connect a client to Docker's MCP server, open Docker Desktop and select Clients > Connect:
+
+## Quick Install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/crashappsec/chalk-mcp/main/setup.sh | bash
+```
+
+To force overwrite ALL previous local state use::w
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/crashappsec/chalk-mcp/main/setup.sh | bash -s -- --force
@@ -18,12 +28,12 @@ curl -fsSL https://raw.githubusercontent.com/crashappsec/chalk-mcp/main/setup.sh
 > Requires [Docker Desktop 4.65+](https://docs.docker.com/desktop/setup/install/) with MCP Toolkit.
 > Verify with: `docker mcp version`
 
-## Quickstart guides
+## Quickstart Guides
 
-| Guide | Description |
-| ----- | ----------- |
+| Guide                                            | Description                                           |
+| ------------------------------------------------ | ----------------------------------------------------- |
 | [Build an Image](docs/quickstart-build-image.md) | Build and sign a container image with full provenance |
-| [CI/CD Integration](docs/quickstart-cicd.md) | Add Chalk to your CI/CD pipelines _(coming soon)_ |
+| [CI/CD Integration](docs/quickstart-cicd.md)     | Add Chalk to your CI/CD pipelines                     |
 
 ## Data residency
 
