@@ -243,11 +243,7 @@ if [[ "$OS" == "Linux" ]]; then
   sed -i "s|__CONFIG_DIR__|$CHALK_CONFIG_DIR|g" "$CATALOG_FILE"
   sed -i "s|__CHALK_TESTING_VALUE__|$CHALK_TESTING|g" "$CATALOG_FILE"
 else
-  if [[ -z "${CHALK_AUTH0_CLIENT_ID:-}" ]]; then
-    err "CHALK_AUTH0_CLIENT_ID is required"
-    exit 1
-  fi
-  AUTH0_CLIENT_ID="$CHALK_AUTH0_CLIENT_ID"
+  AUTH0_CLIENT_ID="${CHALK_AUTH0_CLIENT_ID:-3SHGbINBRtzCuBUyZg6RPl1AxkkNdIaq}"
   sed -e "s|__CONFIG_DIR__|$CHALK_CONFIG_DIR|g" \
       -e "s|__AUTH0_CLIENT_ID__|$AUTH0_CLIENT_ID|g" \
       -e "s|__CHALK_TESTING_VALUE__|$CHALK_TESTING|g" \
