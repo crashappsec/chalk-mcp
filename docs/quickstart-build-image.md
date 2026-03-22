@@ -23,8 +23,8 @@ The installer pulls the server image, registers it with Docker MCP Toolkit,
 and connects it to your chosen client (Claude Code, Cursor, VS Code, etc.).
 
 Restart your AI coding agent after installation. You can verify the server
-is available by checking your MCP tools list — you should see Chalk tools
-like `crash_override_chalk`.
+is available by checking your MCP tools list via `docker mcp tools ls` — you
+should see Chalk tools like `crash_override_chalk`.
 
 ## 2. Clone the demo project
 
