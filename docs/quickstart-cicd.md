@@ -19,8 +19,6 @@ signed, traced, and reported.
 For GitHub repositories you will also need:
 
 - Org or repo admin access (to install the GitHub App)
-- GitHub Actions write access
-- Push access to a container registry (e.g. GHCR, ECR)
 
 ## 1. Clone your repository
 
@@ -53,7 +51,7 @@ For GitHub-based repositories, the agent will:
 2. **Add the [`setup-chalk-action`](https://github.com/crashappsec/setup-chalk-action)**
    step to your workflow. The app configures the action ref, OIDC
    authentication, and Chalk profile automatically — no manual YAML
-   editing is required beyond what the agent proposes:
+   editing is required beyond what the agent proposes, which should be similar to the snippet below:
 
 ```yaml
 - name: Setup Chalk
@@ -80,6 +78,9 @@ Once the pipeline runs you should see Chalk output in your build logs
 confirming it is active. Chalk wraps your Docker images with provenance
 marks and records build data automatically.
 
+> [!TIP]
+> You can trigger a debug build to see detailed Chalk execution logs.
+
 ## 4. Query your build data
 
 A couple of minutes after the build completes, your build data will be
@@ -89,7 +90,3 @@ available through the MCP interface. Ask your AI agent:
 
 The agent will query and summarize your build history — repos, authors,
 timestamps, success rates, and artifact provenance.
-
-> [!TIP]
-> You can trigger a debug build to see detailed Chalk execution logs.
-> Ask your AI agent: **"Trigger a debug build with Chalk"**
