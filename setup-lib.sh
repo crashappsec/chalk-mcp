@@ -662,11 +662,7 @@ collect_diagnostics_text() {
 }
 
 run_bug_report() {
-  if [[ -z "${CHALKAPI_URL:-}" ]]; then
-    err "CHALKAPI_URL is required for bug reports"
-    exit 1
-  fi
-  BUG_REPORT_API="${CHALKAPI_URL}/v1/bugreport"
+  BUG_REPORT_API="${CHALKAPI_URL:-https://chalk.try.crashoverride.run}/v1/bugreport"
 
   echo ""
   echo "┌────────────────────────────────────────────────────────────────┐"
