@@ -1,0 +1,16 @@
+name: chalk
+description: Chalk MCP Server - software provenance and observability for AI agents
+icon_url: https://chalkproject.io/favicon.ico
+ref: ghcr.io/crashappsec/chalk-mcp-server:latest
+config_schema: {}
+container:
+  image: ghcr.io/crashappsec/chalk-mcp-server:latest
+  mounts:
+    - source: /var/run/docker.sock
+      target: /var/run/docker.sock
+    - source: /tmp
+      target: /tmp
+    - source: __HOME__
+      target: __HOME__
+  environment:
+    CHALK_CONFIG_DIR: __CONFIG_DIR__
