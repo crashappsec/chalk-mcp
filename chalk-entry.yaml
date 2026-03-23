@@ -1,5 +1,5 @@
 name: chalk
-description: Chalk MCP Server - software provenance and observability for AI agents
+description: "Chalk MCP Server — CI/CD setup, Docker build provenance, SBOM, supply chain security by Crash Override"
 icon_url: https://chalkproject.io/favicon.ico
 ref: ghcr.io/crashappsec/co/chalk-mcp-server:latest
 config_schema: {}
@@ -10,7 +10,9 @@ container:
       target: /var/run/docker.sock
     - source: /tmp
       target: /tmp
-    - source: __HOME__
-      target: __HOME__
+    - source: /private/tmp
+      target: /private/tmp
+    - source: /Users
+      target: /Users
   environment:
     CHALK_CONFIG_DIR: __CONFIG_DIR__
