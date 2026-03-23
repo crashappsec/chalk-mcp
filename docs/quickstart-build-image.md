@@ -90,3 +90,9 @@ In hosted mode you can ask which services a build was deployed to, in which regi
 Notice that clients might make mistakes when running SQL queries but should succeed in collecting data on their own:
 
 <img width="1496" height="541" alt="Screenshot 2026-03-22 at 9 36 38 PM" src="https://github.com/user-attachments/assets/3ea9ed41-60d5-4c3f-bfda-b25374f535bb" />
+
+If you deploy a service in production with a chalked image, you should be able to get [exec reports](https://chalkproject.io/docs/use-cases/exec/) and essentially track your deployments.
+
+Note that data might take a couple of minutes to propagate fully and LLM clients often rush to reply based on cached data so watch out for hallucinations :)
+
+<img width="1525" height="626" alt="Screenshot 2026-03-20 at 10 06 31 PM" src="https://github.com/user-attachments/assets/756563d9-eeaf-499a-b810-a68a308e0003" />
