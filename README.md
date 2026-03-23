@@ -3,7 +3,7 @@
 > It aims to make onboarding easier for new Chalk users.
 > For a thorough, authoritative Chalk documentation visit [chalkproject.io](https://chalkproject.io/).
 
-## Quick Install
+# Quick Install
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/crashappsec/chalk-mcp/main/setup.sh | bash
@@ -17,6 +17,14 @@ curl -fsSL https://raw.githubusercontent.com/crashappsec/chalk-mcp/main/setup.sh
 
 > Requires [Docker Desktop 4.65+](https://docs.docker.com/desktop/setup/install/) with MCP Toolkit.
 > Verify with: `docker mcp version`
+
+# Quickstart Guides
+
+| Guide                                            | Description                                           |
+| ------------------------------------------------ | ----------------------------------------------------- |
+| [Build an Image](docs/quickstart-build-image.md) | Build and sign a container image with full provenance |
+| [CI/CD Integration](docs/quickstart-cicd.md)     | Add Chalk to your CI/CD pipelines                     |
+
 
 # About
 
@@ -39,13 +47,6 @@ as this image is being deployed and used across different services:
 <img width="1209" height="487" alt="Screenshot 2026-03-22 at 9 54 42 PM" src="https://github.com/user-attachments/assets/30c68160-c379-41eb-bc6d-6c00bee84ce4" />
 
 For more information on the Chalk project see [chalkproject.io](https://chalkproject.io/).
-
-## Quickstart Guides
-
-| Guide                                            | Description                                           |
-| ------------------------------------------------ | ----------------------------------------------------- |
-| [Build an Image](docs/quickstart-build-image.md) | Build and sign a container image with full provenance |
-| [CI/CD Integration](docs/quickstart-cicd.md)     | Add Chalk to your CI/CD pipelines                     |
 
 ## Data residency
 
