@@ -1,6 +1,6 @@
 > [!WARNING]
-> **Alpha Preview** — This server is experimental and provided as an early preview of the upcoming, officially supported release.
-> It aims to make onboarding easier for new Chalk users.
+> **Alpha Preview** — This server is experimental and provided as an early preview of the upcoming, officially supported release which will be getting published in this repo! Stay tuned!
+> The chalk MCP server aims to make onboarding easier for new [Chalk](https://github.com/crashappsec/chalk) users and act as a playground for you to try Chalk either locally or in your CI/CD.
 > For a thorough, authoritative Chalk documentation visit [chalkproject.io](https://chalkproject.io/).
 
 # Quick Install
